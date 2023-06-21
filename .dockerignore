@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+*.tar.gz
+*.bat
+.node-version
+.vscode
+.gitignore
+message
+resources

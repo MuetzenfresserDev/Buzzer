@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buzzer</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#21a815">
+    <meta name="twitter:creator" content="@danielthepope" />
+    <meta property="og:title" content="buzzer.mobi">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://buzzer.mobi/android-chrome-192x192.png">
+    <meta property="og:description" content="Your phone is now an internet-connected gameshow buzzer">
+</head>
+
+<body>
+
+    <div id="message-banner" class="hidden">
+    </div>
+
+    <div id="setup">
+        <form class="form" onsubmit="join(); return false;" autocomplete="off">
+            <div class="fields">
+                <p>
+                    <label for="gameid-input">Sitzung</label>
+                    <input type="text" name="gameid" id="gameid-input" placeholder="_ _ _ _" maxlength="4"
+                        inputmode="numeric">
+                </p>
+                <p>
+                    <label for="name-input">Name</label>
+                    <input type="text" name="name" id="name-input" maxlength="30">
+                </p>
+            </div>
+            <input id="join-button" type="submit" value="Beitreten">
+        </form>
+        <p>Or:</p>
+        <p>
+            <button id="create-button" onclick="createGame()">Buzzer starten</button>
+        </p>
+
+    </div>
+
+    <p id="game-id-p" class="hidden">Sitzung: <strong id="game-id-display">-</strong></p>
+
+    <div id="player-view" class="hidden" style="color: black">
+        <p>Willkommen <span id="player-name-display">-</span></p>
+        <div id="latency-warning"></div>
+        <h2 id="buzzer-header">Buzzer</h2>
+        <div id="buzzer-container">
+            <button id="buzzer" class="ready"></button>
+        </div>
+    </div>
+
+    <section style="display: flex; text-align: center;">
+        <div id="admin-view" class="hidden" style="width: 50%;">
+            <button id="freeze-player-button" onclick="freezePlayer()" disabled>Spieler einfrieren</button>
+            <button id="freeze-all-button" onclick="freezeAll()">Alle einfrieren</button>
+            <button id="reset-all-button" onclick="resetAll()">Buzzer freigeben</button>
+        </div>
+    
+        <div id="player-list-view" class="hidden" style="width: 100%; line-height: 1.5;">
+            <h2>Spieler</h2>
+            <ul id="player-list">
+                <p>Bisher keine Spieler beigetreten</p>
+            </ul>
+        </div>
+    </section>
+
+    <script src="/socket.io.2.4.0.js"></script>
+    <script src="/hammer.min.js"></script>
+    <script src="/howler.min.js"></script>
+    <script src="/buzz.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then((reg) => {
+                    console.log('Service worker registration succeeded. Scope is ' + reg.scope);
+                }).catch((error) => {
+                    console.log('Service worker registration failed with ' + error);
+                });
+        }
+    </script>
+</body>
+
+</html>
