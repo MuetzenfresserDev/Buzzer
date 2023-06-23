@@ -167,7 +167,7 @@ input:focus, button:focus {
 }
 
 #buzzer {
-    background-image: radial-gradient(#bd2222 50%,#810404 70%);
+    background-image: radial-gradient(#67d136 20%, #45bd0d 50%, #058104 70%);
     border-radius: 80vmin;
     border: white solid 5px;
     box-shadow: rgba(0,0,0,0.5) 0 10px 20px;
@@ -180,7 +180,7 @@ input:focus, button:focus {
 }
 
 #buzzer.ready:hover, #buzzer.ready:focus {
-    background-image: radial-gradient(#e44640 30%, #bd2222 50%, #810404 70%);
+    background-image: radial-gradient(#9bff6c 20%, #45bd0d 50%, #058104 70%);
 }
 
 #buzzer.ready.pressed {
@@ -193,12 +193,12 @@ input:focus, button:focus {
 
 #buzzer.disabled {
     box-shadow: none;
-    cursor: default;
-    opacity: 0.5;
+    cursor:not-allowed;
+    background-image: radial-gradient(#9c9c9c 30%,#6d6d6d 60%);
 }
 
 #buzzer.success {
-    background-image: radial-gradient(#67d136 20%, #45bd0d 50%, #058104 70%);
+    background-image: radial-gradient(#bd2222 50%,#810404 70%) ;
     box-shadow: rgba(0,0,0,0.5) 0 10px 20px;
     opacity: 1;
 }

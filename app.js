@@ -177,20 +177,20 @@ io.on('connection', (socket) => {
 
     socket.on('join-request', (data, callback) => {
         if (data.gameId.length !== 4 || !parseInt(data.gameId)) {
-            callback('Invalid game ID');
+            callback('Sitzung nicht gefunden.');
         }
         else if (data.playerName.length > 30) {
             callback('Nickname too long');
         }
         else if (!data.playerName) {
-            callback('Please provide a nickname');
+            callback('Bitte Benutzernamen eingeben.');
         }
         else if (data.gameId in GAMES) {
             sessionData = new SessionData();
             sessionData.playerName = data.playerName;
             sessionData.gameId = data.gameId;
             if (GAMES[sessionData.gameId].players.includes(data.playerName)) {
-                callback('Player name already in use');
+                callback('Benutzername bereits vergeben');
             } else {
                 GAMES[data.gameId].sessions.push(sessionData);
                 log(`${data.playerName} has joined`);
