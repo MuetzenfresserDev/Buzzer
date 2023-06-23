@@ -261,8 +261,8 @@ socket.on('game-created', data => {
 });
 
 socket.on('disconnect', () => {
-    if (isInGame) {
+    /* if (isInGame) {
         alert('You were disconnected');
         window.location.reload();
-    }
+    } */
 });

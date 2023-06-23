@@ -264,7 +264,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
-        log(`${sessionData?.playerName || (sessionData?.isAdmin ? 'admin' : 'non-player')} has left`);
+        /* log(`${sessionData?.playerName || (sessionData?.isAdmin ? 'admin' : 'non-player')} has left`);
         clearInterval(latencyChecker);
         clearInterval(messageSender);
         if (sessionData?.playerName && sessionData?.gameId) {
@@ -278,7 +278,7 @@ io.on('connection', (socket) => {
             GAMES[sessionData.gameId].broadcast.emit('game-over', { message: 'Admin has left' });
             log('Deleted game');
             delete GAMES[sessionData.gameId];
-        }
+        } */
     });
 });
 
