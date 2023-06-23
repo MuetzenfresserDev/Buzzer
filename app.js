@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const io = require('socket.io')(server, {
+    pingInterval: 20000,
+    pingTimeout: 60000
+});
 const fs = require('fs');
 
 const MESSAGE_LOCATION = 'message/message.txt';
@@ -210,6 +213,10 @@ io.on('connection', (socket) => {
             callback("Game ID doesn't exist");
         }
     });
+
+    socket.on('pong', () =>{
+        console.log('pong');
+    })
 
     socket.on('buzz', () => {
         if (sessionData?.gameId && sessionData?.playerName) {

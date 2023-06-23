@@ -128,6 +128,10 @@ function setupPlayer(gameId) {
         window.location.reload();
     });
 
+    gameSocket.on('ping', () => {
+        gameSocket.emit('pong');
+    })
+
     gameSocket.on('buzz', data => {
         if (data.playerName === playerName) {
             buzzSuccess();
