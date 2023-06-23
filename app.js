@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
+server.timeout = 10800000;
 const io = require('socket.io')(server);
 const fs = require('fs');
 
