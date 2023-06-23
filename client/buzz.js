@@ -124,13 +124,9 @@ function setupPlayer(gameId) {
     gameSocket = io.connect(`/${gameId}`);
 
     gameSocket.on('game-over', data => {
-        alert(data.message);
+        //alert(data.message);
         window.location.reload();
     });
-
-    gameSocket.on('ping', () => {
-        gameSocket.emit('pong');
-    })
 
     gameSocket.on('buzz', data => {
         if (data.playerName === playerName) {
@@ -266,7 +262,7 @@ socket.on('game-created', data => {
 
 socket.on('disconnect', () => {
     if (isInGame) {
-        alert('You were disconnected');
+        //alert('You were disconnected');
         window.location.reload();
     }
 });
