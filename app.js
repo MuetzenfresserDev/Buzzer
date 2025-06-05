@@ -1,5 +1,13 @@
 const express = require('express');
 const app = express();
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*'); // ODER '*' für alles
+    res.header('Access-Control-Allow-Methods', 'GET,POST');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+  });
+
 const server = require('http').Server(app);
 server.timeout = 10800000;
 const io = require('socket.io')(server);
@@ -34,6 +42,11 @@ setInterval(updateBroadcastMessage, 30000);
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/client/index.html');
 });
+
+app.get('/keepalive', (req, res) => {
+    console.log('KEEPALIVE')
+    res.sendStatus(200); // Nichts tun, aber als "aktiv" zählen
+});  
 
 app.use(express.static('client'));
 
